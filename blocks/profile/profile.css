@@ -1,0 +1,6 @@
+.profile {
+  display: flex;
+  justify-content: space-between;
+  width: 880px;
+  margin: 40px auto 50px;
+}
