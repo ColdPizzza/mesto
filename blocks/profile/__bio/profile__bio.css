@@ -1,0 +1,18 @@
+.profile__bio {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  margin: 0;
+  padding-top: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media screen and (max-width: 561px) {
+  .profile__bio {
+    font-size: 14px;
+    line-height: 17px;
+    padding-top: 14px;
+    align-self: center;
+  }
+}

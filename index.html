@@ -4,43 +4,111 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="pages/index.css" />
-    <title>Место-Россия</title>
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Mesto</title>
   </head>
-  <body class="page">
+  <body class="page page__center">
     <header class="header page__center">
-      <img class="logo" src="./images/logo.svg" alt="Логотип Место" />
+      <img class="header__logo" src="./images/logo.svg" alt="Логотип Место" />
     </header>
     <main class="content">
       <section class="profile page__center">
         <div class="profile__content">
-          <div class="profile__img">
-            <img class="profile__avatar" src="./Avatar.png" alt="Ваше фото" />
-          </div>
+          <img
+            class="profile__avatar"
+            src="./images/Avatar.png"
+            alt="Ваше фото"
+          />
           <div class="profile__info">
-            <div class="profile__column">
-              <h1 class="profile-info__firstname">Жак-Ив Кусто</h1>
-              <button class="profile__edit-btn" type="button"></button>
+            <div class="profile__row">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button class="profile__edit-btn pop-up_open"></button>
             </div>
-            <p class="profile-info__bio">Исследователь океана</p>
+            <p class="profile__bio">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-btn" type="button"></button>
+        <button class="profile__add-btn"></button>
       </section>
       <section class="elements page__center">
-        <ul class="">
-          <li class="">
-            <img class="" src="" alt="" />
-            <div>
-              <h2 class=""></h2>
-              <div>
-                <button></button>
-              </div>
+        <div class="elements__grid">
+          <div class="element">
+            <img
+              class="element__picture"
+              src="./images/imgonline-com-ua-Resize-t2DXBqsuhFHST4H.jpg"
+              alt="Эверест"
+            />
+            <div class="element__group">
+              <p class="element__name">Эверест</p>
+              <button class="element__like"></button>
             </div>
-          </li>
-        </ul>
+          </div>
+
+          <div class="element">
+            <img class="element__picture" src="./images/k2.jpg" alt="Чогори" />
+            <div class="element__group">
+              <p class="element__name">К2</p>
+              <button class="element__like"></button>
+            </div>
+          </div>
+          <div class="element">
+            <img
+              class="element__picture"
+              src="./images/Kangchenjunga.jpg"
+              alt="Эверест"
+            />
+            <div class="element__group">
+              <p class="element__name">Канченджа́нга</p>
+              <button class="element__like"></button>
+            </div>
+          </div>
+          <div class="element">
+            <img
+              class="element__picture"
+              src="./images/Lhotse.jpg"
+              alt="Лхоцзе"
+            />
+            <div class="element__group">
+              <p class="element__name">Лхоцзе</p>
+              <button class="element__like"></button>
+            </div>
+          </div>
+          <div class="element">
+            <img
+              class="element__picture"
+              src="./images/Manaslu.jpg"
+              alt="Манаслу"
+            />
+            <div class="element__group">
+              <p class="element__name">Манаслу</p>
+              <button class="element__like"></button>
+            </div>
+          </div>
+          <div class="element">
+            <img
+              class="element__picture"
+              src="./images/Annapurna.jpg"
+              alt="Аннапурна"
+            />
+            <div class="element__group">
+              <p class="element__name">Аннапурна</p>
+              <button id="btn" class="element__like"></button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="pop-up">
+        <div class="pop-up__container">
+          <h1 class="pop-up__heading">Редактировать профиль</h1>
+          <form class="pop-up__field">
+            <input class="pop-up__name" placeholder="Имя" />
+            <input class="pop-up__bio" placeholder="Работа" />
+            <button class="pop-up__btn pop-up__btn-name">Сохранить</button>
+          </form>
+          <button class="pop-up__close"></button>
+        </div>
       </section>
     </main>
-    <footer class="footer">© 2022 Mesto Russia</footer>
+    <footer class="footer page__center">© 2022 Mesto Russia</footer>
+    <script src="./script.js"></script>
   </body>
 </html>
