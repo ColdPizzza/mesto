@@ -24,4 +24,4 @@
 
 **Figma:** [Ссылка на макет в Figma](<https://www.figma.com/file/A8jboRsP3bjFEqP4qV5N65/JavaScript.-Sprint-4-(Copy)?node-id=28212%3A326&t=03oEsLvfblZIB561-0>)
 
-**Итоговый вид страницы:** [Ссылка на страницу проекта]()
+**Итоговый вид страницы:** [Ссылка на страницу проекта](https://coldpizzza.github.io/mesto/)
