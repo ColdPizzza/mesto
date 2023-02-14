@@ -1,6 +1,7 @@
 const popupElement = document.querySelector(".pop-up");
 const popupCloseButtonElement = popupElement.querySelector(".pop-up__close");
-const popupOpenButtonElement = document.querySelector(".pop-up__open");
+const popupOpenButtonElement = document.querySelector(".pop-up_open");
+const editButton = document.querySelector(".profile__edit-btn");
 
 let formElement = document.querySelector(".pop-up__field");
 let nameInput = formElement.querySelector(".pop-up__name");
@@ -22,7 +23,7 @@ const closePopupOverlay = function (event) {
   closePopup();
 };
 
-popupOpenButtonElement.addEventListener("click", openPopup);
+editButton.addEventListener("click", openPopup);
 popupCloseButtonElement.addEventListener("click", closePopup);
 popupElement.addEventListener("click", closePopupOverlay);
 
