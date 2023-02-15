@@ -14,3 +14,9 @@
   margin: 0;
   padding-bottom: 12px;
 }
+@media screen and (max-width: 561px) {
+  .pop-up__bio {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}

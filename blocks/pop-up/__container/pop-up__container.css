@@ -9,3 +9,10 @@
   box-sizing: border-box;
   border-radius: 10px;
 }
+@media screen and (max-width: 561px) {
+  .pop-up__container {
+    width: 282px;
+    height: 322px;
+    align-items: center;
+  }
+}
