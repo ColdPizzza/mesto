@@ -22,12 +22,18 @@
           <div class="profile__info">
             <div class="profile__row">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button class="profile__edit-btn"></button>
+              <button
+                class="profile__edit-btn"
+                aria-label="Изменить профайл"
+              ></button>
             </div>
             <p class="profile__bio">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__add-btn"></button>
+        <button
+          class="profile__add-btn"
+          aria-label="Добавить карточку"
+        ></button>
       </section>
       <section class="elements page__center">
         <div class="elements__grid">
@@ -38,16 +44,16 @@
               alt="Эверест"
             />
             <div class="element__group">
-              <p class="element__name">Эверест</p>
-              <button class="element__like"></button>
+              <h2 class="element__name">Эверест</h2>
+              <button class="element__like" aria-label="Нравится!"></button>
             </div>
           </div>
 
           <div class="element">
             <img class="element__picture" src="./images/k2.jpg" alt="Чогори" />
             <div class="element__group">
-              <p class="element__name">К2</p>
-              <button class="element__like"></button>
+              <h2 class="element__name">К2</h2>
+              <button class="element__like" aria-label="Нравится!"></button>
             </div>
           </div>
           <div class="element">
@@ -57,8 +63,8 @@
               alt="Эверест"
             />
             <div class="element__group">
-              <p class="element__name">Канченджа́нга</p>
-              <button class="element__like"></button>
+              <h2 class="element__name">Канченджа́нга</h2>
+              <button class="element__like" aria-label="Нравится!"></button>
             </div>
           </div>
           <div class="element">
@@ -68,8 +74,8 @@
               alt="Лхоцзе"
             />
             <div class="element__group">
-              <p class="element__name">Лхоцзе</p>
-              <button class="element__like"></button>
+              <h2 class="element__name">Лхоцзе</h2>
+              <button class="element__like" aria-label="Нравится!"></button>
             </div>
           </div>
           <div class="element">
@@ -79,8 +85,8 @@
               alt="Манаслу"
             />
             <div class="element__group">
-              <p class="element__name">Манаслу</p>
-              <button class="element__like"></button>
+              <h2 class="element__name">Манаслу</h2>
+              <button class="element__like" aria-label="Нравится!"></button>
             </div>
           </div>
           <div class="element">
@@ -90,25 +96,33 @@
               alt="Аннапурна"
             />
             <div class="element__group">
-              <p class="element__name">Аннапурна</p>
-              <button id="btn" class="element__like"></button>
+              <h2 class="element__name">Аннапурна</h2>
+              <button class="element__like" aria-label="Нравится!"></button>
             </div>
           </div>
         </div>
       </section>
-      <section class="pop-up">
-        <div class="pop-up__container">
-          <h1 class="pop-up__heading">Редактировать профиль</h1>
-          <form class="pop-up__field">
-            <input class="pop-up__name" placeholder="Имя" />
-            <input class="pop-up__bio" placeholder="Работа" />
-            <button class="pop-up__btn pop-up__btn-name">Сохранить</button>
-          </form>
-          <button class="pop-up__close"></button>
-        </div>
-      </section>
     </main>
-    <footer class="footer page__center">© 2022 Mesto Russia</footer>
-    <script src="./script.js"></script>
+    <footer class="footer page__center">
+      <p class="footer__author">© 2022 Mesto Russia</p>
+    </footer>
+    <section class="pop-up">
+      <div class="pop-up__container">
+        <h1 class="pop-up__heading">Редактировать профиль</h1>
+        <form class="pop-up__field">
+          <input class="pop-up__name" placeholder="Имя" />
+          <input class="pop-up__bio" placeholder="Работа" />
+          <button
+            class="pop-up__btn pop-up__btn-name"
+            aria-label="Сохранить"
+            type="“submit"
+          >
+            Сохранить
+          </button>
+        </form>
+        <button class="pop-up__close"></button>
+      </div>
+    </section>
+    <script src="./scripts/script.js"></script>
   </body>
 </html>

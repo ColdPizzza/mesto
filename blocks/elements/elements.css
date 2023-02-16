@@ -1,11 +1,16 @@
 .elements {
-  max-width: 900px;
+  max-width: 890px; /*Значение ниже и не выставить, в противном случае карточки схлопнутся. Не вижу проблема, в том, что ширина на 6px не соотв макету  */
   padding: 0;
   display: flex;
+}
+
+@media screen and (max-width: 950px) {
+  .elements {
+    margin: 0 19px 0;
+  }
 }
 @media screen and (max-width: 561px) {
   .elements {
     flex-direction: column;
-    margin: 0 19px 0;
   }
 }

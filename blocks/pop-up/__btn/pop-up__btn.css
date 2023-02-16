@@ -1,15 +1,17 @@
 .pop-up__btn {
-  width: 358px;
-  height: 50px;
+  width: 100%;
   color: #fff;
   background-color: black;
-  border-radius: 5px;
+  border-radius: 2px;
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
   align-self: center;
   transition: opacity 0.2s ease-in;
   margin-top: 48px;
+  cursor: pointer;
+  padding-top: 14px;
+  padding-bottom: 18px;
 }
 
 .pop-up__btn:hover {

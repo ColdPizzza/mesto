@@ -9,6 +9,7 @@
   height: 50px;
   padding: 0;
   transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
 }
 .profile__add-btn:hover {
   opacity: 0.5;

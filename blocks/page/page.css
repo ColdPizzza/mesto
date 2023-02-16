@@ -3,6 +3,7 @@
   color: #fff;
   font-family: "Inter", "Arial", sans-serif;
   width: 100%;
+  margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
