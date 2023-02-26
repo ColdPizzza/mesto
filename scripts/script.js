@@ -1,9 +1,7 @@
-//Сергей, спасибо большое за развернутые комментарии.
-//Очень полезно все расписано.
-//Миллион благодарностей за подобный подход
-
-//Обратите внимание на названия переменных и функций. Они должны соответствовать правилам, указанным в чек-листе к вашей работе http://joxi.ru/a2XyJ6XtQG84bA
-// Не открывает ссылку, поэтому не могу понять о чем именно вы хотите сообщить
+//Сергей, я не перестаю восторгаться. У вас очень крутые soft skills
+//Без притворства, это самый лучший фид который я получал с точки зрения ценности информации. Я бы хотел, чтобы вы всегда были моим ревьюером :D
+//Куда кидать донаты? :D
+//Если ведёте какой-нибудь блог, тг, жж закрепите, пожалуйста, коммент. Я с радостью подпишусь.
 
 // Выводим контейнер, куда поместим карточки
 const content = document.querySelector(".content");
@@ -23,8 +21,6 @@ const cardAddButton = content.querySelector(".profile__add-btn");
 
 //Popup Профиля
 const popupProfile = document.querySelector("#pop-up_profile");
-//Кнопка закрытия Popup Профиля
-const popupCloseProfile = popupProfile.querySelector(".pop-up__close");
 //Форма редактирования профиля
 const formProfileElement = popupProfile.querySelector(".pop-up__field");
 //Поле ввода имени
@@ -78,27 +74,25 @@ function editPopupProfile(evt) {
   closePopup(popupProfile);
 }
 
-popupCloseProfile.addEventListener("click", () => closePopup(popupProfile));
-
 // Редактирования профиля
 formProfileElement.addEventListener("submit", editPopupProfile);
 // Редактирование карточки
-cardAddButton.addEventListener("click", () => openPopup(popupAddCard));
+cardAddButton.addEventListener("click", function () {
+  openPopup(popupAddCard);
+  formAddCard.reset(); //Done
+});
 
 popupCloseCard.addEventListener("click", function () {
-  formAddCard.reset(); // форма после добавления открывается вновь очищенной
   closePopup(popupAddCard);
 });
 
 // функция создания карточки с фото
 function createCard(item) {
-  const cardElement = cardTemplate.cloneNode(true);
+  const cardElement = cardTemplate.querySelector(".element").cloneNode(true); //У меня очень много "почему". Я понимаю, что вы уж точно не обязаны это все объяснять.Однако, спасибо, что задаете вектор для поиска информации
   const cardPicture = cardElement.querySelector(".element__picture");
   const cardName = cardElement.querySelector(".element__name");
   const cardLike = cardElement.querySelector(".element__like");
   const сardDelete = cardElement.querySelector(".element__trash");
-  // const cardLike = cardElement.querySelectorAll(".element__like"); //Uncaught TypeError: cardLike.forEach is not a function если изменить на querySelector
-  // const сardDelete = cardElement.querySelectorAll(".element__trash"); //Аналогично 93 строке. А можно кинуть ссылку почитать, почему такой способ - плохо?
   cardName.textContent = item.name;
   cardPicture.src = item.link;
   cardPicture.alt = `Место ${item.name}`;
@@ -111,36 +105,30 @@ function createCard(item) {
 
   // Удалить
   сardDelete.addEventListener("click", function (event) {
-    const cardItem = сardDelete.closest(".element");
-    cardItem.remove();
+    cardElement.remove();
   });
-
-  // открытие изображения в большом размере
-
-  //   function getZoom() {
-  //   popupImageTitle.textContent = item.name;
-  //   fullSizePopupImage.src = cardPicture.src;
-  //   fullSizePopupImage.alt = cardPicture.alt;
-  //   openPopup(getZoom);
-  // }
-  // }
-  // popupImage.addEventListener("click", getZoom);
 
   cardPicture.addEventListener("click", function () {
     openPopup(popupImage);
     popupImageTitle.textContent = item.name;
     fullSizePopupImage.src = item.link;
-    fullSizePopupImage.alt = cardPicture.alt;
+    fullSizePopupImage.alt = `Место ${item.name}`;
   });
   return cardElement;
 }
+//клик за пределами области popup
+const closePopupOverlay = function (event) {
+  if (event.target !== event.currentTarget) {
+    return;
+  }
+  closePopup(event.currentTarget);
+};
 
 buttonCloseList.forEach((btn) => {
   const popup = btn.closest(".pop-up");
+  popup.addEventListener("mousedown", closePopupOverlay);
   btn.addEventListener("click", () => closePopup(popup));
-}); //способ интересный, но пока не до конца понял в чем фикус. Ранее новые карточки, тоже закрывались через крестик. Но тогда сразу вопрос, лайк и удаление карточки были же реализованы подобной механикой. Почему это ок, а то нет?
-
-// popupCloseImage.addEventListener("click", () => closePopup(popupImage));
+}); //Теперь стало яснее
 
 // функция добавления новых карточек
 function addNewPopupCard(evt) {
@@ -150,7 +138,6 @@ function addNewPopupCard(evt) {
     link: cardLinkInput.value,
   };
   cardContainer.prepend(createCard(newCard));
-  evt.target.reset();
   closePopup(popupAddCard);
 }
 
@@ -163,20 +150,10 @@ initialCards.forEach(function (item) {
   cardContainer.append(newCard);
 });
 
-//клик за пределами области popup
-const closePopupOverlay = function (event) {
-  if (event.target !== event.currentTarget) {
-    return;
-  }
-  closePopup(event.currentTarget);
-};
-popupAddCard.addEventListener("click", closePopupOverlay);
-popupProfile.addEventListener("click", closePopupOverlay);
-popupImage.addEventListener("click", closePopupOverlay);
+// popupAddCard.addEventListener("click", closePopupOverlay);
+// popupProfile.addEventListener("click", closePopupOverlay);
+// popupImage.addEventListener("click", closePopupOverlay);
 
-//const overlayClosePopup = document.querySelectorAll('.pop-up');
-
-//overlayClosePopup.forEach((??? event) => {
-//   const popupClose = ???(".pop-up");
-//   ???.addEventListener("click", () => closePopup(event.currentTarget));
-// });???
+// document.querySelectorAll(".pop-up").forEach((item) => {
+//   item.addEventListener("click", closePopupOverlay);
+// });
