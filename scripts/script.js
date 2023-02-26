@@ -155,7 +155,7 @@ function createCard(item) {
 
 closePopupImage.addEventListener("click", () => closePopup(popupImage));
 
-// функция добавления новых карточек от пользователя
+// функция добавления новых карточек
 function addNewPopupCard(evt) {
   evt.preventDefault();
   const newCard = {
@@ -170,7 +170,7 @@ function addNewPopupCard(evt) {
 //Добавление карточки
 fieldAddCard.addEventListener("submit", addNewPopupCard);
 
-// вставляем элементы карточек в контейнер при загрузке страницы
+// рендер карточек на старте
 initialCards.forEach(function (item) {
   const newCard = createCard(item);
   cardContainer.append(newCard);
