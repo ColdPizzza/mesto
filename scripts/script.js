@@ -1,65 +1,47 @@
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
+//Сергей, спасибо большое за развернутые комментарии.
+//Очень полезно все расписано.
+//Миллион благодарностей за подобный подход
+
+//Обратите внимание на названия переменных и функций. Они должны соответствовать правилам, указанным в чек-листе к вашей работе http://joxi.ru/a2XyJ6XtQG84bA
+// Не открывает ссылку, поэтому не могу понять о чем именно вы хотите сообщить
 
 // Выводим контейнер, куда поместим карточки
 const content = document.querySelector(".content");
 // Находим контейнер куда будут добавлятся карточки
 const cardContainer = document.querySelector(".elements__grid");
 
+const cardTemplate = document.querySelector("#card").content;
+
 //Имя профиля
 const profileNameElement = content.querySelector(".profile__name");
 // Вид деятельности профиля
 const profileBioElement = content.querySelector(".profile__bio");
 //Кнопка редактирования профиля
-const editProfileButton = content.querySelector(".profile__edit-btn");
+const profileEditButton = content.querySelector(".profile__edit-btn");
 //Кнопка добавить карточку
-const addCardButton = content.querySelector(".profile__add-btn");
+const cardAddButton = content.querySelector(".profile__add-btn");
 
 //Popup Профиля
 const popupProfile = document.querySelector("#pop-up_profile");
 //Кнопка закрытия Popup Профиля
-const сlosePopupProfile = popupProfile.querySelector(".pop-up__close");
+const popupCloseProfile = popupProfile.querySelector(".pop-up__close");
 //Форма редактирования профиля
-const fieldProfileElement = popupProfile.querySelector(".pop-up__field");
+const formProfileElement = popupProfile.querySelector(".pop-up__field");
 //Поле ввода имени
 const profileNameInput = popupProfile.querySelector(".pop-up__input_name");
 //Поле ввода вид деятельности
 const profileBioInput = popupProfile.querySelector(".pop-up__input_bio");
 
 //Popup добавления карточки
-const addPopupCard = document.querySelector("#pop-up_cards");
+const popupAddCard = document.querySelector("#pop-up_cards");
 //Кнопка закрытия Popup карточки
-const сlosePopupCard = addPopupCard.querySelector(".pop-up__close");
+const popupCloseCard = popupAddCard.querySelector(".pop-up__close");
 //Форма добавления карточки
-const fieldAddCard = addPopupCard.querySelector(".pop-up__field");
+const formAddCard = popupAddCard.querySelector(".pop-up__field");
 //Имя карточки
-const cardNameInput = addPopupCard.querySelector(".pop-up__input_add_name");
+const cardNameInput = popupAddCard.querySelector(".pop-up__input_add_name");
 //Путь к фото
-const cardLinkInput = addPopupCard.querySelector(".pop-up__input_add_link");
+const cardLinkInput = popupAddCard.querySelector(".pop-up__input_add_link");
 
 //Контейнер фото
 const popupImage = document.querySelector(".pop-up_card");
@@ -68,7 +50,9 @@ const fullSizePopupImage = popupImage.querySelector(".pop-up__img");
 //Название изображения
 const popupImageTitle = popupImage.querySelector(".pop-up__img-title");
 //Закрытие контейнера с изображение
-const closePopupImage = popupImage.querySelector(".pop-up__close");
+const popupCloseImage = popupImage.querySelector(".pop-up__close");
+
+const buttonCloseList = document.querySelectorAll(".pop-up__close");
 
 // Общая функция открытия попапа
 function openPopup(popup) {
@@ -85,7 +69,7 @@ function editProfile() {
   profileBioInput.value = profileBioElement.textContent;
 }
 
-editProfileButton.addEventListener("click", editProfile);
+profileEditButton.addEventListener("click", editProfile);
 
 function editPopupProfile(evt) {
   evt.preventDefault();
@@ -94,43 +78,41 @@ function editPopupProfile(evt) {
   closePopup(popupProfile);
 }
 
-сlosePopupProfile.addEventListener("click", () => closePopup(popupProfile));
+popupCloseProfile.addEventListener("click", () => closePopup(popupProfile));
 
 // Редактирования профиля
-fieldProfileElement.addEventListener("submit", editPopupProfile);
+formProfileElement.addEventListener("submit", editPopupProfile);
 // Редактирование карточки
-addCardButton.addEventListener("click", () => openPopup(addPopupCard));
+cardAddButton.addEventListener("click", () => openPopup(popupAddCard));
 
-сlosePopupCard.addEventListener("click", function () {
-  fieldAddCard.reset();
-  closePopup(addPopupCard);
+popupCloseCard.addEventListener("click", function () {
+  formAddCard.reset(); // форма после добавления открывается вновь очищенной
+  closePopup(popupAddCard);
 });
 
 // функция создания карточки с фото
 function createCard(item) {
-  const cardTemplate = document.querySelector("#card").content;
   const cardElement = cardTemplate.cloneNode(true);
   const cardPicture = cardElement.querySelector(".element__picture");
   const cardName = cardElement.querySelector(".element__name");
-  const cardLike = cardElement.querySelectorAll(".element__like");
-  const deleteCard = cardElement.querySelectorAll(".element__trash");
+  const cardLike = cardElement.querySelector(".element__like");
+  const сardDelete = cardElement.querySelector(".element__trash");
+  // const cardLike = cardElement.querySelectorAll(".element__like"); //Uncaught TypeError: cardLike.forEach is not a function если изменить на querySelector
+  // const сardDelete = cardElement.querySelectorAll(".element__trash"); //Аналогично 93 строке. А можно кинуть ссылку почитать, почему такой способ - плохо?
   cardName.textContent = item.name;
   cardPicture.src = item.link;
   cardPicture.alt = `Место ${item.name}`;
 
   // Лайк
-  cardLike.forEach(function (cardLike) {
-    cardLike.addEventListener("click", function (event) {
-      cardLike.classList.toggle("element__like_active");
-    });
+
+  cardLike.addEventListener("click", function (event) {
+    cardLike.classList.toggle("element__like_active");
   });
 
   // Удалить
-  deleteCard.forEach(function (deleteCard) {
-    deleteCard.addEventListener("click", function (event) {
-      const cardItem = deleteCard.closest(".element");
-      cardItem.remove();
-    });
+  сardDelete.addEventListener("click", function (event) {
+    const cardItem = сardDelete.closest(".element");
+    cardItem.remove();
   });
 
   // открытие изображения в большом размере
@@ -153,7 +135,12 @@ function createCard(item) {
   return cardElement;
 }
 
-closePopupImage.addEventListener("click", () => closePopup(popupImage));
+buttonCloseList.forEach((btn) => {
+  const popup = btn.closest(".pop-up");
+  btn.addEventListener("click", () => closePopup(popup));
+}); //способ интересный, но пока не до конца понял в чем фикус. Ранее новые карточки, тоже закрывались через крестик. Но тогда сразу вопрос, лайк и удаление карточки были же реализованы подобной механикой. Почему это ок, а то нет?
+
+// popupCloseImage.addEventListener("click", () => closePopup(popupImage));
 
 // функция добавления новых карточек
 function addNewPopupCard(evt) {
@@ -162,13 +149,13 @@ function addNewPopupCard(evt) {
     name: cardNameInput.value,
     link: cardLinkInput.value,
   };
-  cardContainer.append(createCard(newCard));
+  cardContainer.prepend(createCard(newCard));
   evt.target.reset();
-  closePopup(addPopupCard);
+  closePopup(popupAddCard);
 }
 
 //Добавление карточки
-fieldAddCard.addEventListener("submit", addNewPopupCard);
+formAddCard.addEventListener("submit", addNewPopupCard);
 
 // рендер карточек на старте
 initialCards.forEach(function (item) {
@@ -181,8 +168,15 @@ const closePopupOverlay = function (event) {
   if (event.target !== event.currentTarget) {
     return;
   }
-  closePopup();
+  closePopup(event.currentTarget);
 };
-addPopupCard.addEventListener("click", closePopupOverlay);
+popupAddCard.addEventListener("click", closePopupOverlay);
 popupProfile.addEventListener("click", closePopupOverlay);
-// cardPicture.addEventListener("click", closePopupOverlay);???
+popupImage.addEventListener("click", closePopupOverlay);
+
+//const overlayClosePopup = document.querySelectorAll('.pop-up');
+
+//overlayClosePopup.forEach((??? event) => {
+//   const popupClose = ???(".pop-up");
+//   ???.addEventListener("click", () => closePopup(event.currentTarget));
+// });???
