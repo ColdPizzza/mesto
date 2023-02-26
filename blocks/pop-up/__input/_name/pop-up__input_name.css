@@ -1,7 +1,4 @@
-.pop-up__bio {
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
+.pop-up__input_name {
   color: #000;
   font-size: 14px;
   font-weight: 400;
@@ -10,12 +7,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 100%;
-  margin: 0;
-  padding-bottom: 12px;
 }
 @media screen and (max-width: 561px) {
-  .pop-up__bio {
+  .pop-up__name {
     font-size: 14px;
     line-height: 17px;
   }

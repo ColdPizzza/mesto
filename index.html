@@ -37,12 +37,16 @@
       </section>
       <section class="elements page__center">
         <div class="elements__grid">
-          <div class="element">
+          <!-- <div class="element">
             <img
               class="element__picture"
               src="./images/imgonline-com-ua-Resize-t2DXBqsuhFHST4H.jpg"
               alt="Эверест"
             />
+            <button
+              class="element__trash"
+              aria-label="Удалить карточку"
+            ></button>
             <div class="element__group">
               <h2 class="element__name">Эверест</h2>
               <button class="element__like" aria-label="Нравится!"></button>
@@ -51,6 +55,10 @@
 
           <div class="element">
             <img class="element__picture" src="./images/k2.jpg" alt="Чогори" />
+            <button
+              class="element__trash"
+              aria-label="Удалить карточку"
+            ></button>
             <div class="element__group">
               <h2 class="element__name">К2</h2>
               <button class="element__like" aria-label="Нравится!"></button>
@@ -62,6 +70,10 @@
               src="./images/Kangchenjunga.jpg"
               alt="Эверест"
             />
+            <button
+              class="element__trash"
+              aria-label="Удалить карточку"
+            ></button>
             <div class="element__group">
               <h2 class="element__name">Канченджа́нга</h2>
               <button class="element__like" aria-label="Нравится!"></button>
@@ -73,6 +85,10 @@
               src="./images/Lhotse.jpg"
               alt="Лхоцзе"
             />
+            <button
+              class="element__trash"
+              aria-label="Удалить карточку"
+            ></button>
             <div class="element__group">
               <h2 class="element__name">Лхоцзе</h2>
               <button class="element__like" aria-label="Нравится!"></button>
@@ -84,6 +100,10 @@
               src="./images/Manaslu.jpg"
               alt="Манаслу"
             />
+            <button
+              class="element__trash"
+              aria-label="Удалить карточку"
+            ></button>
             <div class="element__group">
               <h2 class="element__name">Манаслу</h2>
               <button class="element__like" aria-label="Нравится!"></button>
@@ -95,23 +115,27 @@
               src="./images/Annapurna.jpg"
               alt="Аннапурна"
             />
+            <button
+              class="element__trash"
+              aria-label="Удалить карточку"
+            ></button>
             <div class="element__group">
               <h2 class="element__name">Аннапурна</h2>
               <button class="element__like" aria-label="Нравится!"></button>
             </div>
-          </div>
+          </div> -->
         </div>
       </section>
     </main>
     <footer class="footer page__center">
       <p class="footer__author">© 2022 Mesto Russia</p>
     </footer>
-    <section class="pop-up">
+    <section id="pop-up_profile" class="pop-up">
       <div class="pop-up__container">
         <h1 class="pop-up__heading">Редактировать профиль</h1>
         <form class="pop-up__field">
-          <input class="pop-up__name" placeholder="Имя" />
-          <input class="pop-up__bio" placeholder="Работа" />
+          <input class="pop-up__input pop-up__input_name" placeholder="Имя" />
+          <input class="pop-up__input pop-up__input_bio" placeholder="Работа" />
           <button
             class="pop-up__btn pop-up__btn-name"
             aria-label="Сохранить"
@@ -123,6 +147,46 @@
         <button class="pop-up__close"></button>
       </div>
     </section>
+    <section id="pop-up_cards" class="pop-up">
+      <div class="pop-up__container">
+        <h1 class="pop-up__heading">Новое Место</h1>
+        <form class="pop-up__field">
+          <input
+            class="pop-up__input pop-up__input_add_name"
+            placeholder="Название"
+          />
+          <input
+            class="pop-up__input pop-up__input_add_link"
+            placeholder="Ссылка на изображение"
+          />
+          <button
+            class="pop-up__btn pop-up__btn-name"
+            aria-label="Сохранить"
+            type="“submit"
+          >
+            Сохранить
+          </button>
+        </form>
+        <button class="pop-up__close"></button>
+      </div>
+    </section>
+    <section class="pop-up pop-up_card">
+      <div class="pop-up__container pop-up__container_card-img">
+        <img class="pop-up__img" src="#" alt="Место" />
+        <h2 class="pop-up__img-title"></h2>
+        <button class="pop-up__close" aria-label="Закрыть"></button>
+      </div>
+    </section>
+    <template id="card">
+      <div class="element">
+        <img class="element__picture" src="#" alt="Место" />
+        <button class="element__trash" aria-label="Удалить"></button>
+        <div class="element__group">
+          <h2 class="element__name"></h2>
+          <button class="element__like" aria-label="Нравится!"></button>
+        </div>
+      </div>
+    </template>
     <script src="./scripts/script.js"></script>
   </body>
 </html>
