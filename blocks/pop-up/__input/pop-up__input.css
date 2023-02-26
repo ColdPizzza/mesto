@@ -5,4 +5,13 @@
   width: 100%;
   margin: 0 0 30px;
   padding-bottom: 12px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+}
+@media screen and (max-width: 561px) {
+  .pop-up__input {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }

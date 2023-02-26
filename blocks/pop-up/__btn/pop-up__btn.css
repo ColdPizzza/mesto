@@ -6,7 +6,7 @@
   border-radius: 2px;
   align-self: center;
   transition: opacity 0.2s ease-in;
-  margin-top: 48px;
+  margin-top: 18px; /*48 */
   cursor: pointer;
   padding-top: 14px;
   padding-bottom: 18px;
@@ -19,8 +19,6 @@
   .pop-up__btn {
     width: 238px;
     height: 46px;
-    font-size: 14px;
-    line-height: 17px;
-    margin-top: 25px;
+    margin-top: 10px;
   }
 }
