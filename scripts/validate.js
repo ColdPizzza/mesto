@@ -69,10 +69,11 @@ function setEventListeners(formElement, item) {
   });
 }
 //функция включает валидацию всех форм
-function enableValidation(item) {
-  const formList = Array.from(document.querySelectorAll(item.formSelector));
+function enableValidation(validationConfig) {
+  const formList = Array.from(
+    document.querySelectorAll(validationConfig.formSelector)
+  );
   formList.forEach((formElement) => {
-    setEventListeners(formElement, item);
+    setEventListeners(formElement, validationConfig);
   });
 }
-enableValidation();

@@ -45,6 +45,8 @@ const popupCloseImage = popupImage.querySelector(".pop-up__close");
 
 const buttonCloseList = document.querySelectorAll(".pop-up__close");
 
+const popupSafeCard = document.querySelector("#popupSafeCard");
+
 // Общая функция открытия попапа
 function openPopup(popup) {
   popup.classList.add("pop-up_open");
@@ -86,11 +88,10 @@ formProfileElement.addEventListener("submit", editPopupProfile);
 // Редактирование карточки
 cardAddButton.addEventListener("click", function () {
   openPopup(popupAddCard);
-  formAddCard.reset(); //Done
-});
-//Закрытие попапа редактирование карточки
-popupCloseCard.addEventListener("click", function () {
-  closePopup(popupAddCard);
+
+  popupSafeCard.classList.add("pop-up__btn_disabled");
+  popupSafeCard.setAttribute("disabled", true);
+  formAddCard.reset();
 });
 
 // функция создания карточки с фото
@@ -114,12 +115,14 @@ function createCard(item) {
     cardElement.remove();
   });
 
-  cardPicture.addEventListener("click", function () {
+  function handleCardImage(item) {
     openPopup(popupImage);
     popupImageTitle.textContent = item.name;
     fullSizePopupImage.src = item.link;
     fullSizePopupImage.alt = `Место ${item.name}`;
-  });
+  }
+
+  cardPicture.addEventListener("click", () => handleCardImage(item));
   return cardElement;
 }
 //клик за пределами области popup
@@ -132,9 +135,9 @@ const closePopupOverlay = function (event) {
 
 buttonCloseList.forEach((btn) => {
   const popup = btn.closest(".pop-up");
-  popup.addEventListener("mousedown", closePopupOverlay);
-  btn.addEventListener("mousedown", () => closePopup(popup));
-}); //Теперь стало яснее
+  popup.addEventListener("click", closePopupOverlay);
+  btn.addEventListener("click", () => closePopup(popup));
+});
 
 // функция добавления новых карточек
 function addNewPopupCard(evt) {
