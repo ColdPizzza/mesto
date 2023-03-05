@@ -135,7 +135,7 @@ const closePopupOverlay = function (event) {
 
 buttonCloseList.forEach((btn) => {
   const popup = btn.closest(".pop-up");
-  popup.addEventListener("mousedawn", closePopupOverlay);
+  popup.addEventListener("click", closePopupOverlay);
   btn.addEventListener("click", () => closePopup(popup));
 });
 
