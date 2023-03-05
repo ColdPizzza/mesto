@@ -1,8 +1,3 @@
-//Сергей, я не перестаю восторгаться. У вас очень крутые soft skills
-//Без притворства, это самый лучший фид который я получал с точки зрения ценности информации. Я бы хотел, чтобы вы всегда были моим ревьюером :D
-//Куда кидать донаты? :D
-//Если ведёте какой-нибудь блог, тг, жж закрепите, пожалуйста, коммент. Я с радостью подпишусь.
-
 // Выводим контейнер, куда поместим карточки
 const content = document.querySelector(".content");
 // Находим контейнер куда будут добавлятся карточки
@@ -53,20 +48,32 @@ const buttonCloseList = document.querySelectorAll(".pop-up__close");
 // Общая функция открытия попапа
 function openPopup(popup) {
   popup.classList.add("pop-up_open");
+  document.addEventListener("keydown", closePopupPushEsc);
 }
 // Общая функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove("pop-up_open");
+  document.removeEventListener("keydown", closePopupPushEsc);
 }
 
+// Функция закрытия попап ESC
+const closePopupPushEsc = function (evt) {
+  if (evt.key === "Escape") {
+    const popupOpen = document.querySelector(".pop-up_open");
+    closePopup(popupOpen);
+  }
+};
+
+//Функция открытия поаап профиля с подтягиванием данных
 function editProfile() {
   openPopup(popupProfile);
   profileNameInput.value = profileNameElement.textContent;
   profileBioInput.value = profileBioElement.textContent;
 }
-
+//Привязали функцию редактирования и открытия к попап профилю
 profileEditButton.addEventListener("click", editProfile);
 
+//Функция для внесения изменений в попап данных профиля
 function editPopupProfile(evt) {
   evt.preventDefault();
   profileNameElement.textContent = profileNameInput.value;
@@ -81,14 +88,14 @@ cardAddButton.addEventListener("click", function () {
   openPopup(popupAddCard);
   formAddCard.reset(); //Done
 });
-
+//Закрытие попапа редактирование карточки
 popupCloseCard.addEventListener("click", function () {
   closePopup(popupAddCard);
 });
 
 // функция создания карточки с фото
 function createCard(item) {
-  const cardElement = cardTemplate.querySelector(".element").cloneNode(true); //У меня очень много "почему". Я понимаю, что вы уж точно не обязаны это все объяснять.Однако, спасибо, что задаете вектор для поиска информации
+  const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
   const cardPicture = cardElement.querySelector(".element__picture");
   const cardName = cardElement.querySelector(".element__name");
   const cardLike = cardElement.querySelector(".element__like");
@@ -98,7 +105,6 @@ function createCard(item) {
   cardPicture.alt = `Место ${item.name}`;
 
   // Лайк
-
   cardLike.addEventListener("click", function (event) {
     cardLike.classList.toggle("element__like_active");
   });
@@ -127,7 +133,7 @@ const closePopupOverlay = function (event) {
 buttonCloseList.forEach((btn) => {
   const popup = btn.closest(".pop-up");
   popup.addEventListener("mousedown", closePopupOverlay);
-  btn.addEventListener("click", () => closePopup(popup));
+  btn.addEventListener("mousedown", () => closePopup(popup));
 }); //Теперь стало яснее
 
 // функция добавления новых карточек

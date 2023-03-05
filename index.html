@@ -45,9 +45,30 @@
     <section id="pop-up_profile" class="pop-up">
       <div class="pop-up__container">
         <h1 class="pop-up__heading">Редактировать профиль</h1>
-        <form class="pop-up__field">
-          <input class="pop-up__input pop-up__input_name" placeholder="Имя" />
-          <input class="pop-up__input pop-up__input_bio" placeholder="Работа" />
+        <form class="pop-up__field" name="popupProfile" novalidate>
+          <input
+            class="pop-up__input pop-up__input_name"
+            placeholder="Имя"
+            id="name-input"
+            type="text"
+            name="popupName"
+            minlength="2"
+            maxlength="40"
+            required
+          />
+          <span class="pop-up__input-error" id="name-input-error"></span>
+          <!--id="name-input-error" -->
+          <input
+            class="pop-up__input pop-up__input_bio"
+            placeholder="Работа"
+            id="bio-input"
+            type="text"
+            name="popupBio"
+            minlength="2"
+            maxlength="200"
+            required
+          />
+          <span class="pop-up__input-error" id="bio-input-error"></span>
           <button
             class="pop-up__btn pop-up__btn-name"
             aria-label="Сохранить"
@@ -62,15 +83,27 @@
     <section id="pop-up_cards" class="pop-up">
       <div class="pop-up__container">
         <h1 class="pop-up__heading">Новое Место</h1>
-        <form class="pop-up__field">
+        <form class="pop-up__field" name="popupCard" novalidate>
           <input
             class="pop-up__input pop-up__input_add_name"
             placeholder="Название"
+            type="text"
+            id="card-name-input"
+            name="popupNameCard"
+            minlength="2"
+            maxlength="30"
+            required
           />
+          <span class="pop-up__input-error" id="card-name-input-error"></span>
           <input
             class="pop-up__input pop-up__input_add_link"
             placeholder="Ссылка на изображение"
+            id="card-link-input"
+            type="url"
+            name="popupLink"
+            required
           />
+          <span class="pop-up__input-error" id="card-link-input-error"></span>
           <button
             class="pop-up__btn pop-up__btn-name"
             aria-label="Сохранить"
@@ -99,6 +132,7 @@
         </div>
       </div>
     </template>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/cards.js"></script>
     <script src="./scripts/script.js"></script>
   </body>
