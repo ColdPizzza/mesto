@@ -54,10 +54,10 @@ class FormValidator {
     //   );
     // }
     if (this._hasInvalidInput(inputList)) {
-      buttonElement.setAttribute.disabled = true;
+      buttonElement.setAttribute("disabled", true);
       buttonElement.classList.add(this._inactiveButtonClass);
     } else {
-      buttonElement.removeAttribute.disabled;
+      buttonElement.removeAttribute("disabled");
       buttonElement.classList.remove(this._inactiveButtonClass);
     }
   }
