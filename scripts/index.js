@@ -1,3 +1,7 @@
+import { initialCards, enableValidation } from "../utils/objCards.js";
+import { Card } from "../scripts/Card.js";
+import { FormValidator } from "../scripts/FormValidator.js";
+
 // Выводим контейнер, куда поместим карточки
 const content = document.querySelector(".content");
 // Находим контейнер куда будут добавлятся карточки
@@ -40,7 +44,7 @@ const popupImage = document.querySelector(".pop-up_card");
 const fullSizePopupImage = popupImage.querySelector(".pop-up__img");
 //Название изображения
 const popupImageTitle = popupImage.querySelector(".pop-up__img-title");
-//Закрытие контейнера с изображение
+// Закрытие контейнера с изображение
 const popupCloseImage = popupImage.querySelector(".pop-up__close");
 
 const buttonCloseList = document.querySelectorAll(".pop-up__close");
@@ -48,7 +52,7 @@ const buttonCloseList = document.querySelectorAll(".pop-up__close");
 const popupSafeCard = document.querySelector("#popupSafeCard");
 
 // Общая функция открытия попапа
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add("pop-up_open");
   document.addEventListener("keydown", closePopupPushEsc);
 }
@@ -90,41 +94,17 @@ cardAddButton.addEventListener("click", function () {
   openPopup(popupAddCard);
 
   popupSafeCard.classList.add("pop-up__btn_disabled");
-  popupSafeCard.setAttribute("disabled", true);
+  popupSafeCard.disabled = true;
   formAddCard.reset();
 });
 
-// функция создания карточки с фото
-function createCard(item) {
-  const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
-  const cardPicture = cardElement.querySelector(".element__picture");
-  const cardName = cardElement.querySelector(".element__name");
-  const cardLike = cardElement.querySelector(".element__like");
-  const сardDelete = cardElement.querySelector(".element__trash");
-  cardName.textContent = item.name;
-  cardPicture.src = item.link;
-  cardPicture.alt = `Место ${item.name}`;
-
-  // Лайк
-  cardLike.addEventListener("click", function (event) {
-    cardLike.classList.toggle("element__like_active");
-  });
-
-  // Удалить
-  сardDelete.addEventListener("click", function (event) {
-    cardElement.remove();
-  });
-
-  function handleCardImage(item) {
-    openPopup(popupImage);
-    popupImageTitle.textContent = item.name;
-    fullSizePopupImage.src = item.link;
-    fullSizePopupImage.alt = `Место ${item.name}`;
-  }
-
-  cardPicture.addEventListener("click", () => handleCardImage(item));
-  return cardElement;
+function handleCardImage(item) {
+  openPopup(popupImage);
+  popupImageTitle.textContent = item.name;
+  fullSizePopupImage.src = item.link;
+  fullSizePopupImage.alt = `Место ${item.name}`;
 }
+
 //клик за пределами области popup
 const closePopupOverlay = function (event) {
   if (event.target !== event.currentTarget) {
@@ -139,30 +119,31 @@ buttonCloseList.forEach((btn) => {
   btn.addEventListener("click", () => closePopup(popup));
 });
 
-// функция добавления новых карточек
+// Добавление новой карточки с помощью экземпляра класса Card:
+
 function addNewPopupCard(evt) {
   evt.preventDefault();
   const newCard = {
     name: cardNameInput.value,
     link: cardLinkInput.value,
   };
-  cardContainer.prepend(createCard(newCard));
+  cardContainer.prepend(
+    new Card(newCard, "#card", handleCardImage).generateCard()
+  );
   closePopup(popupAddCard);
 }
 
-//Добавление карточки
-formAddCard.addEventListener("submit", addNewPopupCard);
-
-// рендер карточек на старте
-initialCards.forEach(function (item) {
-  const newCard = createCard(item);
-  cardContainer.append(newCard);
+initialCards.forEach((cardData) => {
+  const card = new Card(cardData, "#card", handleCardImage);
+  const cardElement = card.generateCard();
+  cardContainer.append(cardElement);
 });
 
-// popupAddCard.addEventListener("click", closePopupOverlay);
-// popupProfile.addEventListener("click", closePopupOverlay);
-// popupImage.addEventListener("click", closePopupOverlay);
+// //Добавление карточки
+formAddCard.addEventListener("submit", addNewPopupCard);
 
-// document.querySelectorAll(".pop-up").forEach((item) => {
-//   item.addEventListener("click", closePopupOverlay);
-// });
+const handleValidAddCard = new FormValidator(enableValidation, popupAddCard);
+handleValidAddCard.enableValidation();
+
+const handleValidProfile = new FormValidator(enableValidation, popupProfile);
+handleValidProfile.enableValidation();

@@ -24,4 +24,14 @@ const initialCards = [
     link: "https://must-see.top/wp-content/uploads/2018/06/kurilskie-ostrova-768x509.jpg",
   },
 ];
-// 😁
+
+const enableValidation = {
+  formSelector: ".pop-up__field",
+  inputSelector: ".pop-up__input",
+  submitButtonSelector: ".pop-up__btn",
+  inactiveButtonClass: "pop-up__btn_disabled",
+  inputErrorClass: "pop-up__input_type_error",
+  errorClass: "pop-up__error_visible",
+};
+
+export { initialCards, enableValidation };
