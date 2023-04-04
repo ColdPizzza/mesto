@@ -132,10 +132,13 @@ function addNewPopupCard(evt) {
   );
   closePopup(popupAddCard);
 }
+function createCard(cardData, handleCardImage) {
+  const card = new Card(cardData, "#card", handleCardImage);
+  return card.generateCard();
+}
 
 initialCards.forEach((cardData) => {
-  const card = new Card(cardData, "#card", handleCardImage);
-  const cardElement = card.generateCard();
+  const cardElement = createCard(cardData, handleCardImage);
   cardContainer.append(cardElement);
 });
 

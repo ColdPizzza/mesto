@@ -24,16 +24,6 @@ class Card {
     this._element.querySelector(".element__name").textContent = this._name;
     return this._element;
   }
-  // _handleLike() {
-  //   this._element
-  //     .querySelector(".element__like")
-  //     .classList.toggle("element__like_active");
-  // }
-
-  // _handleDelete() {
-  //   this._element.querySelector(".element__trash").remove();
-  //   // this._element = "";
-  // }
 
   _setEventListeners() {
     this._element
